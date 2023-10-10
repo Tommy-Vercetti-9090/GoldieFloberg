@@ -1,7 +1,6 @@
 from src.model.otp_model import Otp
 import random
 import smtplib
-import os
 from operator import itemgetter
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -47,7 +46,7 @@ def update_otp(user_id):
 
 def send_mail_template(fullName, otpKey):
     return {
-        "subject": "GOLDIEFLOBERG - Account Verification",
+        "subject": "GOLDIE FLOBERG - Account Verification",
         "html": """
       <div
         style = "padding:20px 20px 40px 20px; position: relative; overflow: hidden; width: 100%;"
@@ -68,7 +67,7 @@ def send_mail_template(fullName, otpKey):
         >
           <h1 
             style="color: #FF3333; font-size: 30px; font-weight: 700;"
-          >Welcome To WEBE</h1>
+          >Welcome To GOLDIE FLOBERG</h1>
           <p
             style="font-size: 24px; text-align: left; font-weight: 500; font-style: italic;"
           >Hi {},</p>
