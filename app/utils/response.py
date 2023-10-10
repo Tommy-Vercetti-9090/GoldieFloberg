@@ -20,7 +20,7 @@ def CustomErrorHandler(message, status):
     status = message["status"] if hasattr(message, "status") else status
     message = message["message"] if hasattr(message, "message") else message
     return Response(
-        response=json.dumps({"message": message}),
+        response=json.dumps({"data": message}),
         status=status,
         mimetype="application/json",
     )

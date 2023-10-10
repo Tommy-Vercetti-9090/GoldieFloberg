@@ -1,6 +1,5 @@
 from utils.response import CustomErrorHandler
 from flask import request, current_app
-import os
 
 
 async def check_bearer():
@@ -10,6 +9,6 @@ async def check_bearer():
         if token == app.config["BEARER_TOKEN"]:
             return
         else:
-            raise Exception({"message": "Invalid Token", "status": 404})
+            return CustomErrorHandler({"message": "Invalid Token", "status": 403}, 403)
     except Exception as e:
         return CustomErrorHandler(e.args[0], 500)
