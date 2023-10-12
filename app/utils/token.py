@@ -1,5 +1,4 @@
 import jwt
-import os
 from uuid import uuid4
 from flask import current_app
 from cryptography.fernet import Fernet

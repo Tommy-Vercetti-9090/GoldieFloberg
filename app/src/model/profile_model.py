@@ -8,14 +8,12 @@ class Profile:
             "properties": {
                 "user_id": {"bsontype": "string"},
                 "address": {"type": "string"},
-                "country": {"type": "string"},
-                "state": {"type": "string"},
-                "city": {"type": "string"},
                 "phone": {"type": "string"},
                 "name": {"type": "string"},
-                "profile_picture": {"bsontype": "string"},
+                "preferred_name": {"type": "string"},
+                "dob": {"type": "string", "format": "datetime"}
             },
-            "required": ["user_id", "profile_picture", "name", "phone", "address", "country", "state", "city"],
+            "required": ["user_id", "name", "preferred_name", "phone", "address", "dob"],
         }
         self.document = document
 
