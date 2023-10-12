@@ -7,7 +7,6 @@ from utils.validators.profile_validation import CreateProfile
 
 def create_profile():
     data = request.json
-    print('dataaaa', data)
     try:
         app = current_app
         profile_schema = CreateProfile()

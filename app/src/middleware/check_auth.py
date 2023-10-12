@@ -14,8 +14,6 @@ def check_auth():
             'authorization').split(" ")[1]).decode('utf8')
 
         payload = verify_token(token)
-
-        print('payload', payload)
         request.user_id = ObjectId(payload['_id'])
         return
 
