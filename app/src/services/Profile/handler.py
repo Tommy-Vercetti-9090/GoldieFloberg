@@ -71,5 +71,5 @@ def create_profile():
 
         return CustomSuccessHandler(profile, "Profile created Successfully", 200)
     except Exception as e:
-        return CustomErrorHandler({"message": "Profile already created"}, 500)\
+        return CustomErrorHandler({"message": "Profile already created"}, 400)\
             if e.code == 11000 else CustomErrorHandler(e.args[0], 500)

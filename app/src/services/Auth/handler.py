@@ -51,7 +51,7 @@ async def user_signup():
         return CustomSuccessHandler(result, "User signed up successfully", 200)
 
     except Exception as e:
-        return CustomErrorHandler({"message": "User already registered"}, 500)\
+        return CustomErrorHandler({"message": "User already registered"}, 400)\
             if e.code == 11000 else CustomErrorHandler(e.args[0], 500)
 
 
@@ -70,12 +70,10 @@ def user_login():
             }
         )
         if not user:
-            raise Exception(
-                {"message": "User not found", "status": 400}
-            )
+            return CustomErrorHandler({"message": "User not found"}, 404)
 
         if not check_password_hash(user["password"], data["password"]):
-            raise Exception({"message": "Incorrect Password", "status": 400})
+            return CustomErrorHandler({"message": "Incorrect password"}, 401)
 
         token = create_token({"_id": str(
             user["_id"]), "email": user["email"], "exp": datetime.utcnow() + timedelta(hours=int(app.config["TOKEN_EXPIRY_HOURS"]))})
@@ -105,10 +103,10 @@ def verify_otp():
         )
 
         if datetime.now() > otp["expire_at"]:
-            raise Exception({"message": "Otp Expired", "status": 400})
+            return CustomErrorHandler({"message": "Otp Expired"}, 400)
 
         elif otp["otp_key"] != otp_key:
-            raise Exception({"message": "Otp key invalid", "status": 400})
+            return CustomErrorHandler({"message": "Otp key invalid"}, 400)
 
         user = app.db["User"].find_one_and_update(
             {"_id": ObjectId(user_id)},
